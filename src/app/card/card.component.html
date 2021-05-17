@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card--container">
+    <div *ngFor="let category of categories" class="card--body">
+      <div class="card--image-block">
+        <img src="{{category.backgroundImg}}" alt="" class="card-image">
+        <span class="card--title">{{category.title}}</span>
+      </div>
+      <div class="card-content-block">
+        <p>{{category.subTitle}}</p>
+      </div>
+      <div class="card-action">
+        <a routerLink="{{category.link}}">Перейти</a>
+      </div>
+    </div>
+  </div>
+</div>
