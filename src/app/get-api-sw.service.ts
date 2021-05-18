@@ -14,27 +14,34 @@ import { Species } from './models/Species';
 })
 export class GetApiSwService {
 
-  private apiUrl = 'https://swapi.dev/api/';
+  private apiUrl = '/api/';
 
-  private entitiesRouting = {
-    people : People,
-    planets : Planets,
-    starships : Starships,
-    species : Species,
+  httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient) { }
+  private entitiesRouting: Map<string, ICard>;
 
-  getEntities(path: any): Observable< ICard[] > {
+  constructor(private http: HttpClient) {
     // @ts-ignore
-    const entityClass: ICard = this.entitiesRouting[path];
-    return this.http.get<ICard[]>(`${this.apiUrl}${path}`)
+    this.entitiesRouting = new Map([
+      ['people', People],
+      ['planets', Planets],
+      ['starships', Starships],
+      ['species', Species],
+    ]);
+  }
+
+  getEntities(path: string): Observable< ICard[] > {
+    // @ts-ignore
+    const entityClass: ICard = this.entitiesRouting.get(path) ?? People;
+    return this.http.get<ICard[]>(`${this.apiUrl}${path}/`)
       .pipe(map((data: any) => {
-        const entitiesList: [] = data.result;
-        // tslint:disable-next-line:only-arrow-functions
-        return entitiesList.map(function(entity: any): ICard {
+         console.log('this is data', data);
+         const entitiesList: [] = data.result;
+         return entitiesList.map((entity: any): ICard => {
           // @ts-ignore
-          return new entityClass(entity);
+           return new entityClass(entity);
         });
       }));
   }

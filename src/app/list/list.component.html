@@ -1,1 +1,8 @@
-<p>list works!</p>
+<h1>kek</h1>
+<ul class="heroes">
+  <li *ngFor="let entity of entities">
+    <a routerLink="">
+      <span class="badge"> {{entity.getTitle()}} </span>
+    </a>
+  </li>
+</ul>
