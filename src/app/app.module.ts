@@ -10,6 +10,7 @@ import { StarWarsService } from './star-wars.service';
 import { CategoriesComponent } from './categories/categories.component';
 import { InMemoryCategoriesService } from './in-memrory-categories.service';
 import { ListComponent } from './list/list.component';
+import { GetApiSwService } from './get-api-sw.service';
 
 @NgModule({
   declarations: [
