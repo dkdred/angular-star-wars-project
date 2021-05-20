@@ -14,7 +14,7 @@ import { Species } from './models/Species';
 })
 export class GetApiSwService {
 
-  private apiUrl = '/api/';
+  private apiUrl = 'https://swapi.dev/api/';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

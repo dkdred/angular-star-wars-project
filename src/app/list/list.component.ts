@@ -23,7 +23,9 @@ export class ListComponent implements OnInit {
   getEntities(): void{
     const path = String(this.route.snapshot.paramMap.get('path'));
     this.getApiSwService.getEntities(path)
-      .subscribe(entitites => this.entities = entitites);
+      .subscribe(entitites => {
+        this.entities = entitites;
+      } );
   }
 
 
